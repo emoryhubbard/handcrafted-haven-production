@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+    --lgray: #bababa;
+    --mgray: #8d8d8d;
+    --dgray: #3a3a3a;
+    --lblue: #a6cbeb;
+    --mblue: #4c96d7;
+    --dblue: #2677bd;
+    --logocolor: #4c96d7;
+    --darkergray: #282828;
+}
+* {
+    font-family: "Figtree", sans-serif;
+}
+:root {
+    @apply box-border;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+html {
+    line-height: 1.15;
+}
+body {
+    @apply overflow-x-hidden;
+}
+li {
+    @apply list-none;
+}
+a {
+    @apply text-inherit font-['Figtree'];
+}
+h2 {
+    @apply text-[1.2rem];
+}
+table {
+    @apply w-full;
+}
+.search-bar-close {
+    @apply hidden;
+}
+.search-bar-open {
+    @apply flex;
+}
+.dark-overlay-open {
+    @apply block;
+}
+.dark-overlay-close {
+    @apply hidden;
+}
+.slideout-menu-close {
+    @apply translate-x-[calc(100vw)] opacity-0;
+}
+.slideout-menu-open {
+    @apply block transition-transform duration-[0.5s,opacity] delay-[0.2s] translate-x-4 opacity-100;
+}
+.has-lcp {
+    @apply relative before:content-[""] before:absolute before:w-full before:h-full before:bg-[url("/images/site/LCP34Left.webp")] before:bg-cover before:bg-center before:brightness-[50%] before:z-[-9999] before:left-0 before:top-0;
+}
+@media (min-width: 620px) {
+    .has-lcp {
+        @apply before:bg-[url("/images/site/LCPTop.webp")];
+    }
+    .slideout-menu-open {
+        @apply block transition-transform duration-[0.5s,opacity] delay-[0.2s] translate-x-[calc(100vw_-_25rem)] opacity-100;
+    }
+}
+@media (min-width: 1100px ) {
+    .has-lcp {
+        @apply before:bg-[url("/images/site/2048LCP43Top.webp")];
+    }
+}
