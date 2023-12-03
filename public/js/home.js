@@ -1,4 +1,4 @@
-setClick(toggleSearchBar, '.find-a-pc')
+setClick(toggleSearchBar, '.find-item')
 
 function toggleSearchBar(e) {
     if (!hasClass('.slideout-menu', '.slideout-menu-open'))

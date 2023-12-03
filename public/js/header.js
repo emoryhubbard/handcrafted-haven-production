@@ -1,4 +1,3 @@
-console.log("I'm running")
 setDefaultStates()
 setClicks(toggleSearchBar, '.search-icon', '.search-close-icon')
 setClicks(toggleMenuBar, '.burger-icon', '.menu-close-icon')
