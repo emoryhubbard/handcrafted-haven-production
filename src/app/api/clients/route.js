@@ -12,5 +12,5 @@ export async function GET(request) {
   const dbConnection = new DBConnection();
   const products = await dbConnection.queryCollection('products', query);
   return Response.json({ products })*/
-  return Response.json( {Hello: "World"} )
+  return Response.json( {Hello: "World 2"} )
 }
