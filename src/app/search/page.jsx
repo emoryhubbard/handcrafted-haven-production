@@ -7,7 +7,7 @@ import { getParam } from '../components/utils.mjs'
 export default function Search() {
     const [products, setProducts] =  useState([])
     useEffect( () => {
-        let url = '/api/search'
+        let url = '/api/products'
         if (getParam("category"))
             url += "?category=" + getParam("category")
         fetch(url).then((response) => response.json())

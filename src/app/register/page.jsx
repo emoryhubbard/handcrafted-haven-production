@@ -9,8 +9,8 @@ export default function SignUp() {
         <title>Create Account</title>
             <Header />
                 <main>
-                <p>Create An Account:</p>
-                <form id="register-form" className="blue-form" method="post" action="/api/submitregister">
+                <p className='create-account'>Create An Account:</p>
+                <form className="register-form blue-form" method="post" action="/api/clients">
                     <fieldset className="password-fieldset">
                         <label className="block">
                         Name<span className="asterisk">*</span>
@@ -58,6 +58,6 @@ export default function SignUp() {
                     </form>
                 </main>
             <Footer />
-            <Script src='/js/register.js' />
+            <Script type='module' src='/js/register.js' />
         </>
     )}

@@ -343,7 +343,7 @@ export default function Header() {
                 </ul>
             </nav>
             </div>
-            <Script src="/js/header.js" />
+            <Script type='module' src="/js/header.js" />
         </>
     );
 }

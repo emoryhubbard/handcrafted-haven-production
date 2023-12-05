@@ -103,6 +103,6 @@ export default function Footer() {
             © 2023 Handcrafted Haven. All rights reserved.
         </p>
         </footer>
-        <Script src="/js/footer.js" />
+        <Script type='module' src="/js/footer.js" />
         </>
         )}

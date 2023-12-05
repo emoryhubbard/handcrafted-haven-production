@@ -56,4 +56,41 @@ export default class DBConnection {
         console.log("deleteDocument cursor: ", cursor);
         return cursor;
     }
+    async insertDocByIntId(collection, doc) {
+        this.initIfNeeded()
+        let results = null
+
+        for (let i=0; i<1; i++) {
+            try {
+                let highDoc = await this.client.db(dbName).collection(collection).findOne({}, { sort: { _id: -1 } })
+            if (highDoc._id)
+                doc._id = highDoc._id + 1
+            if (!highDoc._id)
+                doc._id = 1
+            }
+            catch (e) {
+                console.log("When Calling Find, got an eror: " + e)
+            }
+            try {   
+                results =  await this.client.db(dbName).collection(collection).insertOne(doc);
+            }
+            catch (e) {
+                console.log("When Calling InsertOne, got an error: " + e)
+            }
+        }
+        return results;
+    }
+    async search(collection, text) {
+        await this.client.db(dbName).collection(collection).createIndex({name:"text", description:"text"})
+        let results
+        results = this.client.db(dbName).collection(collection).find({$text:{$search: text}})
+        return results
+    }
 }
+
+            /*if( results.hasWriteError() ) {
+                if( results.writeError.code == 11000 )
+                    continue;
+                else
+                    print( "unexpected error inserting data: " + tojson( results ) );
+            }*/

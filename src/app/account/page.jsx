@@ -1,18 +1,31 @@
+'use client'
 import Header from '../components/header'
 import Footer from '../components/footer'
-import { getParam } from '../components/utils.mjs'
-import { getIronSession } from 'iron-session'
+import {useState, useEffect} from 'react'
+import Script from 'next/script'
+const dotenv = require('dotenv')
+dotenv.config();
 
 export default function Account() {
+    const [allValues, setAllValues] =  useState({name: null, email: null})
+    useEffect( () => {
+       fetch('/api/session')
+        .then((response) => response.json())
+        .then((data) => {
+            const { name, email } = data.session
+            setAllValues({name: name, email: email})
+        })
+        }, [])
     return (
-        <>
-        <title>Sign In</title>
-            <Header />
-                <main>
-                <p>Please Sign In:</p>
-                <form
-                    className="blue-form login-form"
-                    action="/submitlogin"
+            <>
+            <title>Sign In</title>
+                <Header />
+                    <main>
+                    <p className="please-sign-in">{(allValues.name) ? ("You are currently signed in as " + allValues.name + "."): "Please Sign In:"}</p>
+                    <a className={((!allValues.name) ? "hidden ": "block ") + "sign-out border-2 border-black p-4"} href="javascript:">Sign out</a>
+                    <form
+                    className={((allValues.name) ? "hidden ": "block ") + "blue-form login-form"}
+                    action="/api/session"
                     method="post"
                     >
                     <fieldset className="login-form-fieldset">
@@ -44,7 +57,7 @@ export default function Account() {
                         <input type="hidden" name="action" defaultValue="submit-login" />
                     </fieldset>
                     </form>
-                </main>
-            <Footer />
-        </>
-    )}
+                    </main>
+                <Footer />
+                <Script type="module" src="/js/account.js" />
+            </>)}
