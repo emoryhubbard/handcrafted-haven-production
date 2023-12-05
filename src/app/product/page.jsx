@@ -102,7 +102,7 @@ export default function Product() {
                 {allValues.reviews.map(getListItem)}
                 </ul>
                 <p className="please-sign-in pt-4">{(allValues.name) ? ("You are currently signed in as " + allValues.name + ". Leave a review:"): "Sign in to leave a review:"}</p>
-                    <a className={((allValues.name) ? "hidden ": "block ") + "sign-out border-2 border-black p-4"} href="/accounts?action=login">Sign in</a>
+                    <a className={((allValues.name) ? "hidden ": "block ") + "sign-out border-2 border-black p-4"} href="/account?action=login">Sign in</a>
                     <form
                     className={((!allValues.name) ? "hidden ": "block ") + "blue-form review-form"}
                     action="/api/reviews"
