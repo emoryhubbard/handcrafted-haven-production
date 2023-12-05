@@ -1,5 +1,5 @@
 // install bcrypt and express-session by ("npm install bcrypt express-session connect-mongo")
-const { URL } = require('url');
+/*const { URL } = require('url');
 const { Response } = require('node-fetch');
 const dotenv = require('dotenv');
 const bcrypt = require('bcrypt');
@@ -100,3 +100,4 @@ export default async function handler(req, res) {
         res.status(405).end(); // Method not allowed
     }
 }
+*/
