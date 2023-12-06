@@ -109,7 +109,7 @@ export default function Seller() {
                         <input type="hidden" name="seller" defaultValue={allValues.sellerName} />
                     </fieldset>
                 </form>
-                <p>{allValues.seller.sellerName}&aposs Products:</p>
+                <p>{allValues.seller.sellerName} Products:</p>
                 <ul id="device-display" className="device-display">
                     {allValues.products.map(getListItem)}
                 </ul>

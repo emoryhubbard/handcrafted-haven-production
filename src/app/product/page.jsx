@@ -142,7 +142,7 @@ export default function Product() {
                         <input type="hidden" name="productId" defaultValue={allValues.product._id} />
                     </fieldset>
                 </form>
-                <p className='edit-form-description'>Edit Product:</p>
+                <p className={((allValues.sellerName == allValues.product.seller) ? "block ": "hidden ") + 'edit-form-description'}>Edit Product:</p>
                 <form className={((allValues.sellerName == allValues.product.seller) ? "block ": "hidden ") + "edit-form blue-form"}
                     method="put" action="/api/products">
                     <fieldset className="password-fieldset">
