@@ -1,7 +1,6 @@
 import {select, setClick, toggleClass, toggleClasses} from './utils.mjs'
 
-if (select('.sign-out'))
-    setClick(async function (e) {
+setClick(async function (e) {
         console.log("Sign out clicked")
         const response = await fetch('/api/session', {
             method: 'DELETE', // Method itself
@@ -11,15 +10,13 @@ if (select('.sign-out'))
             // No need to have body, because we don't send anything to the server.
         })
         const json = await response.json();
-        if (json.success) {
-            select('.please-sign-in').textContent = "Successfully signed out. Sign in:"
-            toggleClass('.login-form', '.hidden')
-            toggleClass('.sign-out', '.hidden')
-        }
+        if (json.success)
+            location.reload()
+        if (!json.success)
+            select('.please-sign-in').textContent = "Something went wrong while logging out. Please try again."
     }, '.sign-out')
 
-if (select('.login-form'))
-    select('.login-form').addEventListener('submit', async function (event) {
+select('.login-form').addEventListener('submit', async function (event) {
         console.log("Login Form submitted")
         event.preventDefault();
 
@@ -43,9 +40,6 @@ if (select('.login-form'))
         console.log(json.result)
         if (json.result) {
             location.reload()
-            select('.please-sign-in').textContent = "Successfully logged in."
-            toggleClass('.login-form', '.hidden')
-            toggleClasses('.sign-out', '.hidden', '.p-4')
         }
         if (!json.result) {
             select('.please-sign-in').textContent = "Sorry, there was an error logging in to your account. Check if email, password, and other form data is valid."
