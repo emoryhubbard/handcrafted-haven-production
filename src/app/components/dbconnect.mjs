@@ -1,11 +1,11 @@
-const dotenv = require('dotenv');
-dotenv.config();
+const dotenv = require('dotenv')
+dotenv.config()
 
-const connectionString = process.env.CONNECTION_STRING;
-const MongoClient = require('mongodb').MongoClient;
-const dbName = "handcrafted-haven";
+const connectionString = process.env.CONNECTION_STRING
+const MongoClient = require('mongodb').MongoClient
+const dbName = "handcrafted-haven"
 
-export default class DBConnection {
+class DBConnection {
     constructor() {
         this.client = null;
     }
@@ -44,13 +44,13 @@ export default class DBConnection {
         console.log("createDocument cursor: ", cursor);
         return cursor;
     }
-    async updateDocument(query, collection, json) {
+    async updateDocument(collection, query, json) {
         this.initIfNeeded();
         const cursor = await this.client.db(dbName).collection(collection).replaceOne(query, json);
         console.log("updateDocument cursor: ", cursor);
         return cursor;
     }
-    async deleteDocument(query, collection) {
+    async deleteDocument(collection, query) {
         this.initIfNeeded();
         const cursor = await this.client.db(dbName).collection(collection).deleteOne(query);
         console.log("deleteDocument cursor: ", cursor);
@@ -87,6 +87,12 @@ export default class DBConnection {
         return results
     }
 }
+
+if (!global.dbConnection)
+    global.dbConnection = new DBConnection()
+const dbConnection = global.dbConnection
+export default dbConnection
+
 
             /*if( results.hasWriteError() ) {
                 if( results.writeError.code == 11000 )

@@ -1,6 +1,7 @@
 import {select, setClicks, toggleClass, toggleClasses, hasClass, setClick} from './utils.mjs'
 
 setDefaultStates()
+toggleClass('html', '.hidden') // prevent unstyled flash of menu bar
 setClicks(toggleSearchBar, '.search-icon', '.search-close-icon')
 setClicks(toggleMenuBar, '.burger-icon', '.menu-close-icon')
 setClick(submitSearchBar, '.submit-search-icon')

@@ -1,4 +1,4 @@
-import DBConnection from '../../components/dbconnect.mjs'
+import dbConnection from '../../components/dbconnect.mjs'
 import {NextResponse} from 'next/server'
 import { getIronSession } from 'iron-session'
 import { cookies } from 'next/headers'
@@ -13,7 +13,7 @@ export async function GET(request) {
     query = { productId: id};
   if (!id)
     return Response.json({ reviews: []})
-  const dbConnection = new DBConnection();
+  
   const reviews = await dbConnection.queryCollection('reviews', query);
   return Response.json({ reviews: reviews })
 }
@@ -27,7 +27,6 @@ console.log("Session info: " + session.name + session.email)
   try {
     if (res.email == session.email) {
       console.log("Both emails equal")
-      let dbConnection = new DBConnection()
       result = await dbConnection.insertDocByIntId('reviews', {productId: parseInt(res.productId), rating: parseInt(res.rating), comment: res.comment, clientName: session.name}) 
     }
   }

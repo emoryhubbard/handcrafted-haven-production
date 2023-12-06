@@ -1,4 +1,5 @@
 import {select, setClick, toggleClass, toggleClasses} from './utils.mjs'
+
 if (select('.sign-out'))
     setClick(async function (e) {
         console.log("Sign out clicked")
@@ -39,7 +40,9 @@ if (select('.login-form'))
 
         const json = await response.json();
         console.log(json)
+        console.log(json.result)
         if (json.result) {
+            location.reload()
             select('.please-sign-in').textContent = "Successfully logged in."
             toggleClass('.login-form', '.hidden')
             toggleClasses('.sign-out', '.hidden', '.p-4')

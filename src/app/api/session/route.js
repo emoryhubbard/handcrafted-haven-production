@@ -1,7 +1,7 @@
 import {NextResponse} from 'next/server'
 import { getIronSession } from 'iron-session'
 import { cookies } from 'next/headers'
-import DBConnection from '../../components/dbconnect.mjs'
+import dbConnection from '../../components/dbconnect.mjs'
 import { compare } from 'bcryptjs'
 const dotenv = require('dotenv')
 dotenv.config()
@@ -11,7 +11,8 @@ export async function GET(request) {
     return NextResponse.json({
         session: {
             name: session.name,
-            email: session.email
+            email: session.email,
+            sellerName: session.sellerName
         }})
 }
 export async function DELETE(request) {
@@ -27,7 +28,6 @@ export async function POST(request) {
     session.destroy()
 
     session = await getIronSession(cookies(), { password: process.env.SESSION_PASSWORD, cookieName: "handcraftedhaven" })
-    let dbConnection = new DBConnection()
     let query = { email: res.email }
     const clients = await dbConnection.queryCollection('clients', query)
     const client = clients[0]
@@ -36,6 +36,7 @@ export async function POST(request) {
     if (result) {
         session.name = client.name
         session.email = client.email
+        session.sellerName = client.sellerName
         await session.save()
     }
 

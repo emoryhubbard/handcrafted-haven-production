@@ -1,4 +1,4 @@
-import {select} from './utils.mjs'
+import {select, toggleClass} from './utils.mjs'
 
 let topNavMoreLink = select('.top-nav .more-link')
 topNavMoreLink.setAttribute('href', '#bottom-nav-title')

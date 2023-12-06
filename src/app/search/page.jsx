@@ -36,8 +36,8 @@ function getListItem(product) {
         <a href={'/product?id=' + product._id}>
           <img
             loading="lazy"
-            src={"/images/products/" + product.image + ".jpg"}
-            data-src={"/images/products/" + product.image + ".jpg"}
+            src={product.url ? product.url: ("/images/products/" + product.image + ".jpg")}
+            data-src={product.url ? product.url: ("/images/products/" + product.image + ".jpg")}
             alt={"Image of " + product.name}
           />
         </a>
@@ -49,8 +49,7 @@ function getListItem(product) {
           </a>
           <p className="classification-name">{product.category}</p>
           <p className="device-monthly-rate">{product.price}</p>
-          <p className="device-brand">{product.seller}</p>
-          {/*<p className="device-model">PlayStation 1</p>*/}
+          <p className="device-brand">Seller: <a href={'/seller?name=' + product.seller}>{product.seller}</a></p>
           <p className="device-access">Discount offers</p>
           <p className="device-free-trial">Free shipping</p>
         </div>

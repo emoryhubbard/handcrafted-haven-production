@@ -12,8 +12,8 @@ export default function Account() {
        fetch('/api/session')
         .then((response) => response.json())
         .then((data) => {
-            const { name, email } = data.session
-            setAllValues({name: name, email: email})
+            const { name, email, sellerName } = data.session
+            setAllValues({name: name, email: email, sellerName: sellerName})
         })
         }, [])
     return (
@@ -22,6 +22,7 @@ export default function Account() {
                 <Header />
                     <main>
                     <p className="please-sign-in">{(allValues.name) ? ("You are currently signed in as " + allValues.name + "."): "Please Sign In:"}</p>
+                    <a className={(allValues.sellerName ? "block ": "hidden ") + "p-4 border-2 border-black"} href={"/seller?name=" + allValues.sellerName}>Seller Profile Page</a>
                     <a className={((!allValues.name) ? "hidden ": "block ") + "sign-out border-2 border-black p-4"} href="javascript:">Sign out</a>
                     <form
                     className={((allValues.name) ? "hidden ": "block ") + "blue-form login-form"}
@@ -53,6 +54,7 @@ export default function Account() {
                         <label className="no-account block">
                         No account?{" "}
                         <a className="block p-4 border-2 border-black" href="/register">Sign up</a>
+                        <a className="block p-4 border-2 border-black" href="/register?seller=true">Sign up as Seller</a>
                         </label>
                         <input type="hidden" name="action" defaultValue="submit-login" />
                     </fieldset>
